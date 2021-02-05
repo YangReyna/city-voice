@@ -1,11 +1,58 @@
+<style>
+    .gallery_small {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    .tittle {
+        display: none;
+        z-index: 2000;
+        position: relative;
+        text-align: center;
+        margin: 0 auto;
+        width: 100%;
+      	height:100%;
+        top: 30%;
+        font-family: "Arial";
+    }
+
+    .opacity1 {
+        display: none;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        z-index: 1990;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.54);
+        transition: .3s background-color;
+    }
+
+    .gallery_small a img {
+        position: absolute;
+      	width:100%;
+        height: auto;
+    }
+
+    .tittle p {
+        font-weight: bold;
+    }
+
+    .gallery_small:hover .opacity1 {
+        display: block;
+    }
+
+    .gallery_small:hover .tittle {
+        display: block;
+        color: white; 
+    }
+</style>
 <div class="gallery_small" id="gallery_small">
-    <a href="#">
-        <img src="https://images.squarespace-cdn.com/content/5f85c62e422d1e77458b8c44/1612152841915-6E9782ZOO7UZVTIW2LDM/04-4%3A3.png
-" width="460" height="345">
+    <a href="https://sawfish-cuboid-wmcx.squarespace.com/city01">
+        <img id="sky" src="https://images.squarespace-cdn.com/content/5f85c62e422d1e77458b8c44/1612155410230-F34H9JRDT5LTBFVMYCDH/01-4%3A3.png" width="460" height="345">
     </a>
         <div class="opacity1"></div>
         <div class="tittle">
-            <p>Old Qubece</p>Qubece, Canada
+            <p>Fisherman's wharf</p>San Francisco, USA
         </div>
-    
 </div>
