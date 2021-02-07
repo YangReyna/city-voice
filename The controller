@@ -27,12 +27,6 @@
     .volumeimg {
       margin-left: -175px;
     }
-
-    .city_voice_img {
-      margin-top:20px;
-      margin-left: 90px;
-    }
-
     .scale {
       background: #ddd;
       width: 200px;
@@ -75,10 +69,14 @@
     }
   </style>
   <div class="city_voice">
+        <div class="div1">
+      <img
+        src="https://images.squarespace-cdn.com/content/5f85c62e422d1e77458b8c44/1612152633990-VD1078OGPWW1XL5YBWO8/?content-type=image%2Fpng">
+    </div>
     <div class="div2">
-      <div class="volume" style="margin-top:15px">        
+      <div class="volume" style="margin-top:20px">        
         <img class="volumeimg">
-        <div class="scale" id="bar" style="margin-top:15px;margin-left:20px">
+        <div class="scale" id="bar" style="margin-top:30px;margin-left:0px">
           <div style="width: 0px;"></div>
           <span id="btn" style="left: -2px;"></span>
         </div>
