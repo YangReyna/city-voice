@@ -28,7 +28,7 @@
         transition: .3s background-color;
     }
 
-    .gallery_small a img {
+    .gallery_small img {
         position: absolute;
       	width:100%;
         height: auto;
@@ -38,7 +38,7 @@
         font-weight: bold;
     }
 
-    .gallery_small:hover .opacity1 {
+    .gallery_small:hover a .opacity1 {
         display: block;
     }
 
@@ -48,11 +48,14 @@
     }
 </style>
 <div class="gallery_small" id="gallery_small">
-    <a href="https://sawfish-cuboid-wmcx.squarespace.com/city01">
         <img id="sky" src="https://images.squarespace-cdn.com/content/5f85c62e422d1e77458b8c44/1612155410230-F34H9JRDT5LTBFVMYCDH/01-4%3A3.png" width="460" height="345">
-    </a>
+    <a href="https://sawfish-cuboid-wmcx.squarespace.com/city01">
         <div class="opacity1"></div>
+   
         <div class="tittle">
-            <p>Fisherman's wharf</p>San Francisco, USA
-        </div>
+            <a href="https://sawfish-cuboid-wmcx.squarespace.com/city01"> 
+              <p>Fisherman's wharf</p>San Francisco, USA 
+            </a>
+       </div>
+   </a>
 </div>
