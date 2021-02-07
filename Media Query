@@ -1,0 +1,13 @@
+@media screen and (max-width: 640px) {
+  .collection-content-wrapper .nested-category-title {
+    direction: column;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .collection-content-wrapper .nested-category-title {
+    text-align: middle;
+    font-size:1.2rem
+  }
+}
+
