@@ -1,124 +1,130 @@
 <div class="sqs-block-content" id="yui_3_17_2_1_1611801570927_408">
-<audio autoplay="" loop="" id="demo"
-    src="#"></audio>
-  <style>
-    #block-yui_3_17_2_1_1611898030804_10348 {
-      overflow: hidden;
-    }
+  <audio autoplay="" loop="" id="demo"
+    src="https://public.bn.files.1drv.com/y4mptR3DDihs-XBWeN7LRnSbuzDz0eFUyjQVnuF5XIYJeOuRr1o1wYzhZ4JqW9VYpHjwpt2SyjcYQ_BdovnCCQiZmrTSJG_jt6KV2DA9Qu6XijTNZVjbCiEtq5RSyPnh-vdqfHHaGIrO434D8kZ-4nfbDOsAsDBFcRKvl_46nBJi0huNUmHGb-GACCKWRO6-XV9E7OEpp-A1_gynXEW96vd6LdYZp80ZewFZVkq5fagyDo?"></audio>
+  <style>
+    .city_voice {
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .sqs-block{
+    padding-top: 0px;
+    }
+    .div1 {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+    .volume {
+      text-align: center;
+      /* margin-left: -250px;  */
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
 
-    .content {
-      overflow: hidden;
-    }
+    .volumeimg {
+      margin-left: -175px;
+    }
 
-    .city_voice {
-      overflow: hidden;
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-    .sqs-block{
-    padding-top: 0px;
-    }
-     .volumeimg {
-      margin-left: -175px;
-    }
+    .city_voice_img {
+      margin-top:20px;
+      margin-left: 90px;
+    }
 
-    .city_voice_img {
-      margin-top:20px;
-      margin-left: 90px;
-    }
+    .scale {
+      background: #ddd;
+      width: 200px;
+      height: 3px;
+      position: absolute;
+      display: inline-flex;
+    }
 
-    .scale {
-      background: #ddd;
-      width: 200px;
-      height: 3px;
-      position: absolute;
-      display: inline-flex;
-    }
+    .scale span {
+      background-image: url('https://images.squarespace-cdn.com/content/5f85c62e422d1e77458b8c44/1611711698520-W9FEM6K8S7YBDJURW11U/183bbf5724b301a4591f30c58bdaa45.png');
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      left: -15px;
+      top: -10px;
+      cursor: pointer;
+      border-radius: 3px;
+    }
 
-    .scale span {
-      background-image: url('#');
-      width: 24px;
-      height: 24px;
-      position: absolute;
-      left: -15px;
-      top: -10px;
-      cursor: pointer;
-      border-radius: 3px;
-    }
+    .scale div {
+      background: #66D9EF;
+      position: absolute;
+      height: 3px;
+      width: 0;
+      left: 0;
+      bottom: 0;
+    }
 
-    .scale div {
-      background: #66D9EF;
-      position: absolute;
-      height: 3px;
-      width: 0;
-      left: 0;
-      bottom: 0;
-    }
+    .mask {
+      margin: auto;
+      text-align: center;
+    }
 
-    .mask {
-      margin: auto;
-      text-align: center;
-    }
+    .mask_img {
+      margin: auto;
+      text-align: center;
+      opacity: 0;
+      width: 100%;
+      height: auto;
+    }
+  </style>
+  <div class="city_voice">
+    <div class="div2">
+      <div class="volume" style="margin-top:15px">        
+        <img class="volumeimg">
+        <div class="scale" id="bar" style="margin-top:15px;margin-left:20px">
+          <div style="width: 0px;"></div>
+          <span id="btn" style="left: -2px;"></span>
+        </div>
+        <div class="mask">
+          <img class="mask_img" id="mask_img"
+            src="https://images.squarespace-cdn.com/content/5f85c62e422d1e77458b8c44/1612523486488-U4XGO1VYXQCI47483PRG/P.png"
+            style="opacity: 0;">
+        </div>
+      </div>
+    </div>
 
-    .mask_img {
-      margin: auto;
-      text-align: center;
-      opacity: 0;
-      width: 100%;
-      height: auto;
-    }
- </style>
- <div class="city_voice">
-     <div class="div2">
-      <div class="volume" style="margin-top:15px">
-        <div class="scale" id="bar" style="margin-top:15px;margin-left:20px">
-          <div style="width: 0px;"></div>
-          <span id="btn" style="left: -2px;"></span>   bar
-        </div>
-        <div class="mask">
-          <img class="mask_img" id="mask_img"
-            src="#"
-            style="opacity: 0;">
-        </div>
-      </div>
-    </div>
+    <script>
+      var scale = function (btn, bar, title) {
+        this.btn = document.getElementById(btn);
+        this.bar = document.getElementById(bar);
+        this.step = this.bar.getElementsByTagName("div")[0];
 
-    <script>
-      var scale = function (btn, bar, title) {
-        this.btn = document.getElementById(btn);
-        this.bar = document.getElementById(bar);
-        this.step = this.bar.getElementsByTagName("div")[0];
+        this.init = function () {
+          document.getElementById('demo').volume = 0;
+          var f = this,
+            g = document,
+            b = window,
+            m = Math;
+          f.btn.onmousedown = function (e) {
+            var x = (e || b.event).clientX;
+            var l = this.offsetLeft;
+            var max = f.bar.offsetWidth - this.offsetWidth;
+            g.onmousemove = function (e) {
+              var thisX = (e || b.event).clientX;
+              var to = m.min(max, m.max(-2, l + (thisX - x)));
+              f.btn.style.left = to + 'px';
+              f.ondrag(m.round(m.max(0, to / max) * 100), to);
+              b.getSelection ? b.getSelection().removeAllRanges() : g.selection.empty();
+            };
+            g.onmouseup = new Function('this.onmousemove=null');
+          };
+        };
+        this.ondrag = function (pos, x) {
+          this.step.style.width = Math.max(0, x) + 'px';
+          document.getElementById('demo').volume = pos * 0.01;
+          document.getElementById('mask_img').style.opacity = pos * 0.01;
+        };
+        this.init();
+      }
 
-        this.init = function () {
-          document.getElementById('demo').volume = 0;
-          var f = this,
-            g = document,
-            b = window,
-            m = Math;
-          f.btn.onmousedown = function (e) {
-            var x = (e || b.event).clientX;
-            var l = this.offsetLeft;
-            var max = f.bar.offsetWidth - this.offsetWidth;
-            g.onmousemove = function (e) {
-              var thisX = (e || b.event).clientX;
-              var to = m.min(max, m.max(-2, l + (thisX - x)));
-              f.btn.style.left = to + 'px';
-              f.ondrag(m.round(m.max(0, to / max) * 100), to);
-              b.getSelection ? b.getSelection().removeAllRanges() : g.selection.empty();
-            };
-            g.onmouseup = new Function('this.onmousemove=null');
-          };
-        };
-        this.ondrag = function (pos, x) {
-          this.step.style.width = Math.max(0, x) + 'px';
-          document.getElementById('demo').volume = pos * 0.01;
-          document.getElementById('mask_img').style.opacity = pos * 0.01;
-        };
-        this.init();
-      }
-
-      new scale('btn', 'bar', 'title'); //实例化一个拖拽
-    </script>
-  </div>
+      new scale('btn', 'bar', 'title'); //实例化一个拖拽
+    </script>
+  </div>
 </div>
