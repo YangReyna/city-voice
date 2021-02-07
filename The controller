@@ -1,283 +1,124 @@
 <div class="sqs-block-content" id="yui_3_17_2_1_1611801570927_408">
-  <audio autoplay="" loop="" id="demo"
-    src="https://public.bn.files.1drv.com/y4mcfL4JnnaidHIEucUX6tPXLUcQ2yoCED03mcrpTl70JhVI2UO6VulKL8sBi5-x8PxsClq2XCz5STd20qNNnHZYxRVrjEbesldIik1zT1pf-z8plvoig8pwTtD-Jc6NZMsWSNb5I8t2vJNER3cSMxtJR-ilUiUbzl9opq5TyKEYthr62o6yJd43hoU7DvvgI_Vv_wZeZXEzgPvRvlW2CoZYPXwQ_DJFqdDBfc5pLIPv2I?"></audio>
-  <style>
-    #block-yui_3_17_2_1_1611898030804_10348 {
-      overflow: hidden;
-    }
+<audio autoplay="" loop="" id="demo"
+    src="#"></audio>
+  <style>
+    #block-yui_3_17_2_1_1611898030804_10348 {
+      overflow: hidden;
+    }
 
-    .content {
-      overflow: hidden;
-    }
+    .content {
+      overflow: hidden;
+    }
 
-    .city_voice {
-      overflow: hidden;
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-    .sqs-block{
-    padding-top: 0px;
-    }
-    .div1 {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-    }
+    .city_voice {
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .sqs-block{
+    padding-top: 0px;
+    }
+     .volumeimg {
+      margin-left: -175px;
+    }
 
-    .side {
-      z-index: 2000;
-      float: right;
-      position: sticky;
-      top: 45%;
-    }
-    .side_right_o{
-      display: none;
-    }
-    .side a:hover .side_right_o{
-      display: block;
-    }
-    .side a:hover .side_right_n{
-      display: none;
-    }
-    .volume {
-      text-align: center;
-      /* margin-left: -250px;  */
-      width: 100%;
-      height: 100%;
-      position: relative;
-    }
+    .city_voice_img {
+      margin-top:20px;
+      margin-left: 90px;
+    }
 
-    .volumeimg {
-      margin-left: -175px;
-    }
+    .scale {
+      background: #ddd;
+      width: 200px;
+      height: 3px;
+      position: absolute;
+      display: inline-flex;
+    }
 
-    .city_voice_img {
-      margin-top:20px;
-      margin-left: 90px;
-    }
+    .scale span {
+      background-image: url('#');
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      left: -15px;
+      top: -10px;
+      cursor: pointer;
+      border-radius: 3px;
+    }
 
-    .scale {
-      background: #ddd;
-      width: 200px;
-      height: 3px;
-      position: absolute;
-      display: inline-flex;
-    }
+    .scale div {
+      background: #66D9EF;
+      position: absolute;
+      height: 3px;
+      width: 0;
+      left: 0;
+      bottom: 0;
+    }
 
-    .scale span {
-      background-image: url('https://images.squarespace-cdn.com/content/5f85c62e422d1e77458b8c44/1611711698520-W9FEM6K8S7YBDJURW11U/183bbf5724b301a4591f30c58bdaa45.png');
-      width: 24px;
-      height: 24px;
-      position: absolute;
-      left: -15px;
-      top: -10px;
-      cursor: pointer;
-      border-radius: 3px;
-    }
+    .mask {
+      margin: auto;
+      text-align: center;
+    }
 
-    .scale div {
-      background: #66D9EF;
-      position: absolute;
-      height: 3px;
-      width: 0;
-      left: 0;
-      bottom: 0;
-    }
+    .mask_img {
+      margin: auto;
+      text-align: center;
+      opacity: 0;
+      width: 100%;
+      height: auto;
+    }
+ </style>
+ <div class="city_voice">
+     <div class="div2">
+      <div class="volume" style="margin-top:15px">
+        <div class="scale" id="bar" style="margin-top:15px;margin-left:20px">
+          <div style="width: 0px;"></div>
+          <span id="btn" style="left: -2px;"></span>   bar
+        </div>
+        <div class="mask">
+          <img class="mask_img" id="mask_img"
+            src="#"
+            style="opacity: 0;">
+        </div>
+      </div>
+    </div>
 
-    .mask {
-      margin: auto;
-      text-align: center;
-    }
+    <script>
+      var scale = function (btn, bar, title) {
+        this.btn = document.getElementById(btn);
+        this.bar = document.getElementById(bar);
+        this.step = this.bar.getElementsByTagName("div")[0];
 
-    .mask_img {
-      margin: auto;
-      text-align: center;
-      opacity: 0;
-      width: 100%;
-      height: auto;
-    }
-  </style>
-  <style>
-    .flicker_down {
-      width: 100%;
-      height: auto;
-    }
+        this.init = function () {
+          document.getElementById('demo').volume = 0;
+          var f = this,
+            g = document,
+            b = window,
+            m = Math;
+          f.btn.onmousedown = function (e) {
+            var x = (e || b.event).clientX;
+            var l = this.offsetLeft;
+            var max = f.bar.offsetWidth - this.offsetWidth;
+            g.onmousemove = function (e) {
+              var thisX = (e || b.event).clientX;
+              var to = m.min(max, m.max(-2, l + (thisX - x)));
+              f.btn.style.left = to + 'px';
+              f.ondrag(m.round(m.max(0, to / max) * 100), to);
+              b.getSelection ? b.getSelection().removeAllRanges() : g.selection.empty();
+            };
+            g.onmouseup = new Function('this.onmousemove=null');
+          };
+        };
+        this.ondrag = function (pos, x) {
+          this.step.style.width = Math.max(0, x) + 'px';
+          document.getElementById('demo').volume = pos * 0.01;
+          document.getElementById('mask_img').style.opacity = pos * 0.01;
+        };
+        this.init();
+      }
 
-    @keyframes flicker {
-
-      0%,
-      100% {
-        transform: scale(1.02);
-        -moz-transform: scale(1.02);
-        -o-transform: scale(1.02);
-        -webkit-transform: scale(1.02);
-        -ms-transform: scale(1.02);
-        opacity: 1
-      }
-
-      50% {
-        transform: scale(1.0);
-        -moz-transform: scale(1.0);
-        -o-transform: scale(1.0);
-        -webkit-transform: scale(1.0);
-        -ms-transform: scale(1.0);
-        opacity: 1
-      }
-
-    }
-
-    @-webkit-keyframes flicker {
-
-      0%,
-      100% {
-        -webkit-transform: scale(1.02);
-        -moz-transform: scale(1.02);
-        -o-transform: scale(1.02);
-        -ms-transform: scale(1.02);
-        transform: scale(1.02);
-        opacity: 1
-      }
-
-      50% {
-        -webkit-transform: scale(1.0);
-        -moz-transform: scale(1.0);
-        -o-transform: scale(1.0);
-        -ms-transform: scale(1.0);
-        transform: scale(1.0);
-        opacity: 1
-      }
-
-    }
-
-    @-moz-keyframes flicker {
-
-      0%,
-      100% {
-        -moz-transform: scale(1.02);
-        -o-transform: scale(1.02);
-        -webkit-transform: scale(1.02);
-        -ms-transform: scale(1.02);
-        transform: scale(1.02);
-        opacity: 1
-      }
-
-      50% {
-        -moz-transform: scale(1.0);
-        -o-transform: scale(1.0);
-        -webkit-transform: scale(1.0);
-        -ms-transform: scale(1.0);
-        transform: scale(1.0);
-        opacity: 1
-      }
-
-    }
-
-    @-o-keyframes flicker {
-
-      0%,
-      100% {
-        -o-transform: scale(1.02);
-        -moz-transform: scale(1.02);
-        -webkit-transform: scale(1.02);
-        -ms-transform: scale(1.02);
-        transform: scale(1.02);
-        opacity: 1
-      }
-
-      50% {
-        -o-transform: scale(1.0);
-        -moz-transform: scale(1.0);
-        -webkit-transform: scale(1.0);
-        -ms-transform: scale(1.0);
-        transform: scale(1.0);
-        opacity: 1
-      }
-
-    }
-
-    .flicker_down.trans {
-      -webkit-animation: flicker 25.0s infinite ease-in-out;
-      -moz-animation: flicker 25.0s infinite ease-in-out;
-      -o-animation: flicker 25.0s infinite ease-in-out;
-      animation: flicker 25.0s infinite ease-in-out
-    }
-
-    .flicker_down.arrow {
-      animation-delay: -25.0s;
-      -webkit-animation-delay: -25.0s;
-      -moz-animation-delay: -25.0s;
-      -o-animation-delay: -25.0s
-    }
-  </style>
-  <div class="city_voice">
-    <div class="div1">
-      <img
-        src="https://images.squarespace-cdn.com/content/5f85c62e422d1e77458b8c44/1612152633990-VD1078OGPWW1XL5YBWO8/?content-type=image%2Fpng"
-        width="460" height="345" class="flicker_down arrow trans">
-    </div>
-    <div class="side">
-      <a href="https://sawfish-cuboid-wmcx.squarespace.com/city02">
-      <img src="https://images.squarespace-cdn.com/content/5f85c62e422d1e77458b8c44/1611906981089-AICB00F1PA5I92QP7D5T/8003c1355e6b5b0fb7291583d8fb111.png" class="side_right_n">
-      <img src="https://images.squarespace-cdn.com/content/5f85c62e422d1e77458b8c44/1611906968738-PVEC6ANP2TWREUI7BX4M/49bb70889213c057233f0c9a479cb51.png" class="side_right_o">
-    </a>
-    </div>
-    <div class="div2">
-      <div class="volume" style="margin-top:15px">
-        <div class="city_voice_img">
-          <img
-            src="https://images.squarespace-cdn.com/content/5f85c62e422d1e77458b8c44/1611711722675-5YOD659Z9TYIAHFUFGM1/e946f17220d8c2b6f9c5f70113bd5c8.png">
-        </div>
-        <img class="volumeimg"
-          src="https://images.squarespace-cdn.com/content/5f85c62e422d1e77458b8c44/1611905142932-TAFA31F3POEA4KKGIQ38/04-icon+%E6%9B%BF%E6%8D%A2%EF%BC%88200%25%EF%BC%89.png?content-type=image%2Fpng"
-          width="34px" height="34px">
-        <div class="scale" id="bar" style="margin-top:15px;margin-left:20px">
-          <div style="width: 0px;"></div>
-          <span id="btn" style="left: -2px;"></span>
-        </div>
-        <div class="mask">
-          <img class="mask_img" id="mask_img"
-            src="https://images.squarespace-cdn.com/content/5f85c62e422d1e77458b8c44/1612523486488-U4XGO1VYXQCI47483PRG/P.png?format=1000w&content-type=image%2Fpng"
-            style="opacity: 0;">
-        </div>
-      </div>
-    </div>
-
-    <script>
-      var scale = function (btn, bar, title) {
-        this.btn = document.getElementById(btn);
-        this.bar = document.getElementById(bar);
-        this.step = this.bar.getElementsByTagName("div")[0];
-
-        this.init = function () {
-          document.getElementById('demo').volume = 0;
-          var f = this,
-            g = document,
-            b = window,
-            m = Math;
-          f.btn.onmousedown = function (e) {
-            var x = (e || b.event).clientX;
-            var l = this.offsetLeft;
-            var max = f.bar.offsetWidth - this.offsetWidth;
-            g.onmousemove = function (e) {
-              var thisX = (e || b.event).clientX;
-              var to = m.min(max, m.max(-2, l + (thisX - x)));
-              f.btn.style.left = to + 'px';
-              f.ondrag(m.round(m.max(0, to / max) * 100), to);
-              b.getSelection ? b.getSelection().removeAllRanges() : g.selection.empty();
-            };
-            g.onmouseup = new Function('this.onmousemove=null');
-          };
-        };
-        this.ondrag = function (pos, x) {
-          this.step.style.width = Math.max(0, x) + 'px';
-          document.getElementById('demo').volume = pos * 0.01;
-          document.getElementById('mask_img').style.opacity = pos * 0.01;
-        };
-        this.init();
-      }
-
-      new scale('btn', 'bar', 'title'); //实例化一个拖拽
-    </script>
-  </div>
+      new scale('btn', 'bar', 'title'); //实例化一个拖拽
+    </script>
+  </div>
 </div>
